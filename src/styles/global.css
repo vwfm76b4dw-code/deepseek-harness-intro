@@ -6125,3 +6125,16 @@ p.real-note { margin-left: auto; margin-right: auto; }
   );
 }
 .page-full { padding-top: 96px; }
+
+/* 转场模式循环按钮 */
+.fx-cycle {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; font-weight: 600; color: var(--ink-2);
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s var(--ease-micro), color 0.15s, transform 0.15s var(--ease-micro);
+}
+.fx-cycle:hover { border-color: rgba(77, 107, 254, 0.5); color: var(--ink); }
+.fx-cycle:active { transform: scale(0.95); }
+.fx-cycle .fx-next { color: var(--blue); font-weight: 700; }

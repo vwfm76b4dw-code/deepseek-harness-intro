@@ -16,18 +16,20 @@ export const pageFromHash = total => {
 };
 
 export function Chrome({ page, total, fxMode, onFxMode }) {
+  const order = ['auto', ...Object.keys(TRANSITIONS)];
+  const label = fxMode === 'auto' ? '自动轮播' : (TRANSITIONS[fxMode]?.label || fxMode);
+  const next = () => {
+    const i = order.indexOf(fxMode);
+    onFxMode(order[(i + 1) % order.length]);
+  };
   return (
     <div className="chrome">
       <span className="nav-logo"><span className="dot">🐋</span> DeepSeek Harness</span>
       <span className="spacer" />
       <span className="fx-label">转场</span>
-      <GlideSelect
-        options={FX_LABELS}
-        value={FX_LABELS.find(l => FX_BY_LABEL[l] === fxMode) || '自动轮播'}
-        onChange={l => onFxMode(FX_BY_LABEL[l] || 'auto')}
-        ariaLabel="转场模式"
-        size="sm"
-      />
+      <button type="button" className="fx-cycle" onClick={next} title="点击切换转场模式">
+        {label} <span className="fx-next">›</span>
+      </button>
       <span className="pg-count">{String(page + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
     </div>
   );
@@ -54,8 +56,6 @@ export function usePageTransitions({ total, scripts }) {
   const go = useCallback(target => {
     const now = performance.now();
     const busy = now < busyUntilRef.current;
-    window.__dbgLog = window.__dbgLog || [];
-    window.__dbgLog.push({ t: Math.round(now % 100000), busy, target, cur: curRef.current });
     if (busy) return;
     const n = Math.max(0, Math.min(total - 1, target));
     if (n === curRef.current) return;
@@ -76,6 +76,7 @@ export function usePageTransitions({ total, scripts }) {
     if (tr.kind === 'canvas') {
       setMontage({ mode, word: script[1] || script[0], shots: null, idx: 0, closing: false, dir: 1 });
     } else {
+      const dir = n >= (curRef.current - 1) ? 1 : -1;
       setMontage({ mode, word: script[1] || script[0], shots: buildShots(mode, script, dir), idx: 0, closing: false, dir });
     }
     timers.current.push(window.setTimeout(() => setMontage(m => (m ? { ...m, closing: true } : m)), dur));

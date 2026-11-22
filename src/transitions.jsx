@@ -212,9 +212,9 @@ export function ShotFrame({ shot, noAnim }) {
 }
 
 /* 百叶窗条带层：phase 驱动 cover/reveal */
-export function BlindsLayer({ phase, dir }) {
+export function BlindsLayer({ phase }) {
   const bands = Array.from({ length: 8 }, (_, i) => i);
-  const delay = i => `${(dir > 0 ? i : 7 - i) * 70}ms`;
+  const delay = i => `${i * 70}ms`;
   return (
     <div className={`blinds-layer phase-${phase}`} aria-hidden="true">
       {bands.map(i => (
