@@ -1,0 +1,121 @@
+/* ============================================================
+   landing-a.css · 并行代理 A（S2 what / S3 plugin / S4 tasks）
+   类名统一 sa- 前缀，避免与他人冲突
+   仅 transform/opacity 动画；间距 8 的倍数；颜色只用 global.css :root 变量
+   ============================================================ */
+
+/* ---------- S2 关键词 marquee：约束 CurvedLoop 骨架高度 ---------- */
+.sa-loop { margin-top: 48px; }
+.sa-loop .curved-loop-jacket { min-height: 0; height: 132px; }
+
+/* ---------- S2 官方自我介绍（毛玻璃卡） ---------- */
+.sa-intro { margin-top: 32px; }
+.sa-intro-inner { padding: 32px; }
+.sa-quote { font-size: 17px; line-height: 1.8; color: var(--ink); font-weight: 500; }
+.sa-quote-src { margin-top: 16px; font-size: 13px; color: var(--ink-3); }
+
+/* ---------- S2 心智模型等式 ---------- */
+.sa-eq-line { margin-top: 64px; }
+.sa-eq-note { margin-top: 16px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.sa-eq-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.sa-eq-tag { font-size: 13px; font-weight: 600; color: var(--blue); margin-bottom: 16px; }
+.sa-eq-list { display: grid; gap: 8px; }
+.sa-eq-list li { font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* ---------- S2 5 类事项卡（间距沿用 .ld-grid 默认） ---------- */
+.sa-help-what { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.sa-help-out { margin-top: 16px; display: flex; gap: 8px; align-items: baseline; font-size: 14px; line-height: 1.7; color: var(--ink); }
+.sa-help-out-tag {
+  flex: none; font-size: 11px; font-weight: 600;
+  color: var(--blue-deep); background: var(--blue-soft);
+  border-radius: 6px; padding: 2px 8px;
+}
+.sa-col-full { grid-column: 1 / -1; }
+.sa-close { margin-top: 32px; font-size: 17px; font-weight: 600; }
+.sa-src { margin-top: 16px; }
+.sa-src a {
+  display: inline-flex; align-items: center;
+  font-size: 13px; font-weight: 500; color: var(--blue-deep);
+  padding: 8px 16px;
+}
+
+/* ---------- S3 插件三类卡（TiltedCard 内胆） ---------- */
+.sa-plug {
+  height: 100%; display: flex; flex-direction: column; gap: 8px;
+  background: var(--surface); border: 0.5px solid var(--hairline);
+  border-radius: 16px; padding: 24px; box-shadow: var(--shadow-card);
+}
+.sa-plug-en { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--blue); }
+.sa-plug h3 { font-size: 19px; font-weight: 700; }
+.sa-plug-desc { font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.sa-plug-demo {
+  margin-top: auto; font-size: 12px; line-height: 1.6;
+  color: var(--blue-deep); background: var(--blue-soft);
+  border-radius: 8px; padding: 8px 12px;
+}
+
+/* ---------- S3 工具调用 chips ---------- */
+.sa-calls { margin-top: 48px; }
+.sa-calls-label { font-size: 15px; font-weight: 600; }
+.sa-calls-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.sa-note { margin-top: 12px; font-size: 12px; color: var(--ink-3); }
+.sa-note a { color: var(--blue); }
+
+/* ---------- S3 创造模式 / 插件市场 ---------- */
+.sa-feature p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* ---------- S3 安装方式 ---------- */
+.sa-install {
+  margin-top: 32px; padding: 24px;
+  background: var(--surface); border: 0.5px solid var(--hairline);
+  border-radius: 16px; box-shadow: var(--shadow-card);
+}
+.sa-install-label { font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: var(--blue); }
+.sa-install-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; }
+.sa-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px; color: var(--blue-deep); background: var(--blue-soft);
+  border-radius: 10px; padding: 8px 16px;
+}
+.sa-install-or { font-size: 13px; color: var(--ink-3); }
+.sa-install-market { font-size: 14px; font-weight: 500; color: var(--ink); }
+.sa-paper { margin-top: 32px; font-size: 13px; line-height: 1.7; color: var(--ink-2); }
+
+/* ---------- S4 任务卡 ---------- */
+.sa-task h3 { font-size: 17px; font-weight: 600; margin-bottom: 16px; }
+.sa-task-rows { display: grid; gap: 8px; }
+.sa-task-rows p { display: flex; gap: 8px; align-items: baseline; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.sa-tag {
+  flex: none; font-size: 11px; font-weight: 600;
+  color: var(--blue-deep); background: var(--blue-soft);
+  border-radius: 6px; padding: 2px 8px;
+}
+.sa-tag-preview { color: var(--blue); background: rgba(77, 107, 254, 0.12); }
+
+/* ---------- S4 任务循环（loop-step 风格，四步） ---------- */
+.sa-loop-label { margin-top: 64px; font-size: 15px; font-weight: 600; }
+.sa-loop-row { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.sa-loop-row .loop-step { padding: 16px; }
+@media (max-width: 900px) {
+  .sa-loop-row { grid-template-columns: repeat(2, 1fr); }
+  .sa-loop-row .loop-step:nth-child(2n)::after { display: none; }
+}
+@media (max-width: 560px) {
+  .sa-loop-row { grid-template-columns: 1fr; }
+  .sa-loop-row .loop-step::after { display: none; }
+}
+
+/* ---------- S4 深色预览卡（PixelCard 内胆） ---------- */
+.sa-pixel { margin-top: 48px; }
+.sa-pixel-inner { max-width: 640px; padding: 32px 24px; text-align: left; }
+.sa-pixel-inner h3 { font-size: 19px; font-weight: 700; color: var(--bg); }
+.sa-pixel-inner p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--bg); opacity: 0.72; }
+.sa-pixel-note { font-size: 12px; opacity: 0.55; }
+
+/* ---------- 通用微调 ---------- */
+@media (max-width: 900px) {
+  .sa-loop .curved-loop-jacket { height: 112px; }
+  .sa-intro-inner { padding: 24px; }
+  .sa-eq-line { margin-top: 48px; }
+  .sa-loop-label { margin-top: 48px; }
+}

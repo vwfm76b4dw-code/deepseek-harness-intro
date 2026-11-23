@@ -1,0 +1,158 @@
+/* ============================================================
+   Landing v2 · 批次 B 样式（S5 工作方式 / S6 开发者工具 / S7 命令启动）
+   类名统一 sb- 前缀；仅动画 transform/opacity；颜色只用 :root 变量
+   ============================================================ */
+
+/* ---------- S5 标签面板（PillNav 切 tab，面板用 CSS 入场，不依赖 IO） ---------- */
+.sb-tabs { margin-top: 32px; }
+.sb-panel {
+  margin-top: 24px;
+  min-height: 240px;
+  animation: sb-panel-in 0.4s var(--ease-out) both;
+}
+@keyframes sb-panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-panel { animation: none; }
+}
+
+.sb-panel-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.sb-panel-title { font-size: 19px; font-weight: 600; margin-bottom: 12px; }
+.sb-points { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.sb-points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(29, 29, 31, 0.72);
+}
+.sb-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--blue);
+}
+.sb-points li b { color: var(--ink); font-weight: 600; }
+
+/* 演示卡内舞台 */
+.sb-demo-stage { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.sb-demo-hint { font-size: 13px; line-height: 1.6; color: rgba(29, 29, 31, 0.55); }
+.sb-scene-desc { font-size: 14px; line-height: 1.7; color: rgba(29, 29, 31, 0.72); min-height: 48px; }
+
+/* 工具调用详情折叠（样式语言对齐 ld-faq） */
+.sb-details {
+  width: 100%;
+  background: var(--surface);
+  border: 0.5px solid var(--hairline);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+.sb-details summary {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sb-details summary::-webkit-details-marker { display: none; }
+.sb-details summary::after {
+  content: '+';
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--blue);
+  transition: transform 0.2s var(--ease-micro);
+}
+.sb-details[open] summary::after { transform: rotate(45deg); }
+.sb-details-body { margin-top: 16px; }
+.sb-details-body .ld-term { margin-top: 0; }
+.sb-details-body .ld-term-body { padding: 12px 14px; font-size: 12px; line-height: 1.7; }
+
+/* ---------- 定时运行四步时间线（复用 global.css 的 .loop-step） ---------- */
+.sb-loopflow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+/* 连接线在 16px 间距中重新居中（全局默认 right:-11px 对应 10px 间距） */
+.sb-loopflow .loop-step:not(:last-child)::after { right: -14px; }
+@media (max-width: 960px) {
+  .sb-loopflow { grid-template-columns: repeat(2, 1fr); }
+  .sb-loopflow .loop-step:nth-child(2n)::after { display: none; }
+}
+@media (max-width: 620px) {
+  .sb-loopflow { grid-template-columns: 1fr; }
+  .sb-loopflow .loop-step::after { display: none; }
+}
+
+/* ---------- S6 开发者工具 ---------- */
+.sb-dt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  margin-top: 32px;
+  align-items: start;
+}
+.sb-dt-side { display: grid; gap: 16px; }
+.sb-dt-trace { display: flex; flex-direction: column; gap: 16px; }
+.sb-dt-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.sb-dt-techtext { width: 240px; height: 48px; }
+.sb-ft {
+  position: relative;
+  height: 140px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 0.5px solid var(--hairline);
+}
+.sb-counters { display: flex; gap: 32px; align-items: flex-end; }
+.sb-counter { display: flex; flex-direction: column; gap: 4px; }
+.sb-counter-label { font-size: 12px; color: rgba(29, 29, 31, 0.55); }
+
+/* ---------- S7 命令启动 ---------- */
+.sb-start-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  align-items: start;
+}
+.sb-start-main { display: flex; flex-direction: column; gap: 16px; }
+.sb-start-side { display: grid; gap: 16px; }
+.sb-term-switch { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.sb-kv { display: grid; gap: 12px; margin-top: 12px; }
+.sb-kv-row { display: flex; gap: 12px; font-size: 14px; line-height: 1.6; }
+.sb-kv-key { flex: 0 0 auto; font-weight: 600; color: var(--ink); min-width: 84px; }
+.sb-kv-val { color: rgba(29, 29, 31, 0.72); }
+.sb-kv-val code,
+.sb-start-side p code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  background: var(--blue-soft);
+  color: var(--blue-deep);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* ---------- 响应式：移动端单列 ---------- */
+@media (max-width: 900px) {
+  .sb-panel-grid,
+  .sb-dt-grid,
+  .sb-start-grid { grid-template-columns: 1fr; }
+  .sb-dt-techtext { width: 180px; }
+}
